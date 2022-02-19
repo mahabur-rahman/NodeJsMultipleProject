@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const bcrypt = require("bcrypt");
 const hbs = require("hbs");
 const app = express();
 require("./db/conn");
@@ -50,6 +51,8 @@ app.post("/register", async (req, res) => {
         confirmpassword: cpassword,
       });
 
+      // password hash
+
       const result = await userData.save();
       res.status(201).render("index");
     } else {
@@ -69,11 +72,12 @@ app.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    // console.log(`Email : ${email} Password : ${password}`);
+
     const userEmail = await Register.findOne({ email });
-    // console.log(userEmail);
-    // console.log(userEmail.password);
-    if (userEmail.password === password) {
+
+    const isMatch = await bcrypt.compare(password, userEmail.password);
+
+    if (isMatch) {
       res.status(201).render("index");
     } else {
       res.send("Password are not matching");
