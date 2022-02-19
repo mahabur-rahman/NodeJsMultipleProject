@@ -51,7 +51,9 @@ app.post("/register", async (req, res) => {
         confirmpassword: cpassword,
       });
 
-      // password hash
+      // invoking token func
+
+      const token = await userData.generateAuthToken();
 
       const result = await userData.save();
       res.status(201).render("index");
