@@ -1,0 +1,22 @@
+{
+    "name": "mern",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js -e js,hbs"
+    },
+    "keywords": [],
+    "author": "Mahabur Rahman",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.3",
+        "hbs": "^4.2.0",
+        "mongoose": "^6.2.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}
